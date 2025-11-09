@@ -1,0 +1,58 @@
+{% set name = "ProcessCuration" %}
+{% set version = "0.2.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  path: ..
+
+build:
+  number: 0
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
+  entry_points:
+    - split_agp = split_agp:main
+    - chromosome_assignment = chromosome_assignment:main
+    - sak_generation = sak_generation:main
+
+requirements:
+  host:
+    - python >=3.8
+    - pip
+    - setuptools >=45
+    - wheel
+  run:
+    - python >=3.8
+    - biopython >=1.85
+    - pandas >=2.0
+    - natsort >=8.4.0
+    - gfastats >=1.3.10
+    - mashmap
+
+test:
+  imports:
+    - ProcessCuration
+  commands:
+    - split_agp --help
+    - chromosome_assignment --help
+    - sak_generation --help
+
+about:
+  home: https://github.com/Delphine-L/vgl-curation
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.txt
+  summary: Process manually curated genome assemblies
+  description: |
+    ProcessCuration is a set of tools to process curated genome assemblies.
+    In combination with gfastats and mashmap, it reconciles the AGP file
+    manually curated in PretextView to rename, reorient, and sort the
+    assemblies to get them ready for submission.
+  doc_url: https://github.com/Delphine-L/vgl-curation
+  dev_url: https://github.com/Delphine-L/vgl-curation
+
+extra:
+  recipe-maintainers:
+    - Delphine-L

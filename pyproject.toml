@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ProcessCuration"
+version = "0.2.0"
+authors = [
+    {name = "Delphine Lariviere", email = "delphine.lariviere@senckenberg.de"}
+]
+description = "Process manually curated genome assembly"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Operating System :: OS Independent",
+]
+keywords = ["genomics", "assembly", "curation", "bioinformatics"]
+
+dependencies = [
+    "biopython>=1.85",
+    "pandas>=2.0",
+    "natsort>=8.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Delphine-L/vgl-curation"
+Repository = "https://github.com/Delphine-L/vgl-curation"
+Issues = "https://github.com/Delphine-L/vgl-curation/issues"
+
+[project.scripts]
+split_agp = "split_agp:main"
+chromosome_assignment = "chromosome_assignment:main"
+sak_generation = "sak_generation:main"
+
+[tool.setuptools]
+packages = ["ProcessCuration"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.package-data]
+ProcessCuration = ["*.py"]
+
+[tool.setuptools.data-files]
+"share/ProcessCuration/bin" = ["bin/curation_2.0_pipe.sh"]

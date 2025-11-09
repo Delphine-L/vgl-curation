@@ -1,0 +1,8 @@
+include README.md
+include README.rst
+include LICENSE.txt
+include CHANGES.md
+recursive-include bin *.sh
+recursive-include docs *
+global-exclude __pycache__
+global-exclude *.py[co]
